@@ -18,11 +18,11 @@ contract OnsenAllocatorV2 is BaseAllocator {
 
     /// ========== STATE VARIABLES ==========
 
-    address immutable sushi; // $SUSHI token
-    address immutable xSushi; // $xSUSHI token
-    address immutable masterChef; // Onsen contract
+    address public sushi; // $SUSHI token
+    address public xSushi; // $xSUSHI token
+    address public masterChef; // Onsen contract
 
-    address immutable treasury; // Olympus Treasury
+    address public treasury; // Olympus Treasury
 
     /// ========== CONSTRUCTOR ==========
 
@@ -121,6 +121,22 @@ contract OnsenAllocatorV2 is BaseAllocator {
 
     function name() external pure override returns (string memory) {
         return "OnsenAllocator";
+    }
+
+    function setTreasury(address treasuryAddress) external onlyGuardian {
+        treasury = treasuryAddress;
+    }
+
+    function setSushi(address sushiAddress) external onlyGuardian {
+        sushi = sushiAddress;
+    }
+
+    function setXSushi(address xSushiAddress) external onlyGuardian {
+        xSushi = xSushiAddress;
+    }
+
+    function setMasterChefAddress(address masterChefAddress) external onlyGuardian {
+        masterChef = masterChefAddress;
     }
 
     /// ========== INTERNAL FUNCTIONS ==========
